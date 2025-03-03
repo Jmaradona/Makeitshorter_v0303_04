@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: 250 250 250;
+    --bg-secondary: 244 244 245;
+    --text-primary: 24 24 27;
+    --text-secondary: 82 82 91;
+  }
+
+  .dark {
+    --bg-primary: 24 24 27;
+    --bg-secondary: 39 39 42;
+    --text-primary: 244 244 245;
+    --text-secondary: 212 212 216;
+  }
+
+  body {
+    @apply antialiased bg-[rgb(var(--bg-primary))] text-[rgb(var(--text-primary))] transition-colors;
+  }
+}
+
+@layer components {
+  .input-area {
+    @apply relative flex-1 flex flex-col;
+  }
+
+  .input-area::before {
+    @apply absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 pointer-events-none rounded-lg transition-colors;
+  }
+
+  .tag-button {
+    @apply px-3 py-1.5 rounded-lg text-sm transition-all duration-200 hover:shadow-sm;
+  }
+
+  .tag-button-selected {
+    @apply bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 shadow-md scale-[1.02];
+  }
+
+  .tag-button-unselected {
+    @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-[1.02];
+  }
+
+  /* Tutorial highlight styles */
+  .tutorial-highlight {
+    @apply relative z-[75] !important;
+  }
+
+  .tutorial-highlight::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+  }
+
+  .dark .tutorial-highlight::before {
+    background-color: rgba(24, 24, 27, 0.98);
+  }
+
+  .tutorial-highlight::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    z-index: -1;
+  }
+
+  .dark .tutorial-highlight::after {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Custom scrollbar styles */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors;
+  }
+}
